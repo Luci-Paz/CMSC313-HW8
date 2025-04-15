@@ -1,2 +1,15 @@
 # CMSC313-HW8
-Lucian Pazour's repository for CMSC313-01 (1114), HW8 C vs C++, 
+
+# Authoring:
+Lucian Pazour (UMBC / CMSC313-01, MoWe 8:30AM - 9:45AM / 04152025)
+
+# Purpose of Software:
+Create libraries for C and C++ that define matrix functions for addition, multiplication and transposition.
+
+# Files
+
+# Build Instructions
+
+# Testing Methodology
+
+# Additional Information
