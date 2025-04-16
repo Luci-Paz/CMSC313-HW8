@@ -14,79 +14,125 @@
  #include "matrix.h"
  using namespace std;
  
- Matrix::Matrix(int r, int c) : rows(r), cols(c) {
+ // Constructor
+ Matrix::Matrix(int rows, int cols, double initVal) : rows(rows), cols(cols) {
      allocateMemory();
- }
+
+    // Initialize the matrix with the given value
+    for (int i = 0; i < rows; ++i)
+        for (int j = 0; j < cols; ++j)
+            data[i][j] = initVal;
+        //end inner for loop
+    //end outer for loop
+ } // end constructor
  
+
+ // Copy Constructor
  Matrix::Matrix(const Matrix& secondMat) : rows(secondMat.rows), cols(secondMat.cols) {
      allocateMemory();
      for (int i = 0; i < rows; ++i)
          for (int j = 0; j < cols; ++j)
              data[i][j] = secondMat.data[i][j];
- }
+            // end inner for loop
+        // end outer for loop
+ } //end copy constructor
  
+
+ // Destructor
  Matrix::~Matrix() {
      deallocateMemory();
- }
- 
+ } // end destructor
+
+
+ // Assignment Operator to assign one matrix to another
  Matrix& Matrix::operator=(const Matrix& secondMat) {
      if (this == &secondMat) return *this;
- 
+
+     // Deallocate current memory and allocate new memory
      deallocateMemory();
      rows = secondMat.rows;
      cols = secondMat.cols;
      allocateMemory();
- 
+    
+     // Copy the elements from the second matrix
      for (int i = 0; i < rows; ++i)
          for (int j = 0; j < cols; ++j)
              data[i][j] = secondMat.data[i][j];
+            // end inner for loop
+        // end outer for loop
+     
      return *this;
- }
+ } // end assignment operator
  
+
+ // Private Methods =================================================================
+ // Private method to allocate memory for the matrix
  void Matrix::allocateMemory() {
      data = new double*[rows];
      for (int i = 0; i < rows; ++i)
          data[i] = new double[cols]();
- }
+ } //end allocateMemory
  
+
+ // Private method to deallocate memory for the matrix
  void Matrix::deallocateMemory() {
      for (int i = 0; i < rows; ++i)
          delete[] data[i];
      delete[] data;
- }
+ } //end deallocateMemory
  
- void Matrix::setElement(int r, int c, double value) {
-     data[r][c] = value;
- }
+
+ // Public Methods ==================================================================
+ // Public methods to set and get elements of the matrix
+ // Set the value of a specific element in the matrix
+ void Matrix::setElement(int row, int col, double value) {
+     data[row][col] = value;
+ } //end setElement
  
- double Matrix::getElement(int r, int c) const {
-     return data[r][c];
- }
+
+ // Get the value of a specific element in the matrix
+ double Matrix::getElement(int row, int col) const {
+     return data[row][col];
+ } //end getElement
+
  
+ // Method to input matrix elements from user
  void Matrix::inputMatrix() {
      cout << "Enter elements (" << rows << "x" << cols << "):\n";
+     
+     // Loop through each element and prompt user for input
      for (int i = 0; i < rows; ++i)
          for (int j = 0; j < cols; ++j) {
              cout << "Element [" << i << "][" << j << "]: ";
              cin >> data[i][j];
-         }
- }
- 
+         } //end inner for loop
+    // end outer for loop
+ } // end inputMatrix
+
+
+ // Method to print the matrix
  void Matrix::printMatrix() const {
+
+    // loop through each element and display it
      for (int i = 0; i < rows; ++i) {
          for (int j = 0; j < cols; ++j)
-             cout << setw(10) << data[i][j] << " ";
+             cout << setw(10) << data[i][j] << " "; 
+            // end inner for loop
+         
          cout << "\n";
-     }
- }
+     } //end outer for loop
+ } //end printMatrix
  
+
+// Matrix operations ============================================================
+// Method to add two matrices
  Matrix Matrix::add(const Matrix& secondMat) const {
      if (rows != secondMat.rows || cols != secondMat.cols) {
          cerr << "Addition error: matrix dimensions do not match.\n";
          exit(EXIT_FAILURE);
      }
  
-     Matrix result(rows, cols);
+     Matrix result(rows, cols, 0);
      for (int i = 0; i < rows; ++i)
          for (int j = 0; j < cols; ++j)
              result.data[i][j] = data[i][j] + secondMat.data[i][j];
@@ -99,7 +145,7 @@
          exit(EXIT_FAILURE);
      }
  
-     Matrix result(rows, cols);
+     Matrix result(rows, cols, 0);
      for (int i = 0; i < rows; ++i)
          for (int j = 0; j < cols; ++j)
              result.data[i][j] = data[i][j] - secondMat.data[i][j];
@@ -107,7 +153,7 @@
  }
  
  Matrix Matrix::multiplyByScalar(double scalar) const {
-     Matrix result(rows, cols);
+     Matrix result(rows, cols, 0);
      for (int i = 0; i < rows; ++i)
          for (int j = 0; j < cols; ++j)
              result.data[i][j] = data[i][j] * scalar;
@@ -120,7 +166,7 @@
          exit(EXIT_FAILURE);
      }
  
-     Matrix result(rows, secondMat.cols);
+     Matrix result(rows, secondMat.cols, 0);
      for (int i = 0; i < rows; ++i)
          for (int j = 0; j < secondMat.cols; ++j)
              for (int k = 0; k < cols; ++k)
@@ -129,7 +175,7 @@
  }
  
  Matrix Matrix::transpose() const {
-     Matrix result(cols, rows);
+     Matrix result(cols, rows, 0);
      for (int i = 0; i < rows; ++i)
          for (int j = 0; j < cols; ++j)
              result.data[j][i] = data[i][j];

@@ -24,25 +24,33 @@
          void deallocateMemory();
  
      public:
-         Matrix(int r, int c);                     // Constructor
-         Matrix(const Matrix& other);              // Copy Constructor
-         ~Matrix();                                // Destructor
-         Matrix& operator=(const Matrix& other);   // Assignment Operator
- 
-         void setElement(int r, int c, double value);
-         double getElement(int r, int c) const;
- 
-         void inputMatrix();
-         void printMatrix() const;
- 
-         Matrix add(const Matrix& other) const;
-         Matrix subtract(const Matrix& other) const;
-         Matrix multiplyByScalar(double scalar) const;
-         Matrix multiply(const Matrix& other) const;
-         Matrix transpose() const;
- 
+         Matrix(int rows, int cols, double initVal);    // Constructor
+         Matrix(const Matrix& secondMat);               // Copy Constructor
+         ~Matrix();                                     // Destructor
+         Matrix& operator=(const Matrix& secondMat);    // Assignment Operator
+
+         // return the number of rows and columns
          int getRows() const;
          int getCols() const;
+
+         // Set and get element at (row, col)
+         void setElement(int row, int col, double value);
+         double getElement(int row, int col) const;
+
+         // Add initial values to matrix
+         void inputMatrix();
+
+         // Print the matrix
+         void printMatrix() const;
+ 
+         // Matrix operations
+         // Add, subtract, multiply by scalar, multiply, and transpose
+         Matrix add(const Matrix& secondMat) const;
+         Matrix subtract(const Matrix& secondMat) const;
+         Matrix multiplyByScalar(double scalar) const;
+         Matrix multiply(const Matrix& secondMat) const;
+         Matrix transpose() const;
+
  };
  
  #endif // MATRIX_H
