@@ -45,10 +45,10 @@
  
          // Matrix operations
          // Add, subtract, multiply by scalar, multiply, and transpose
-         Matrix add(const Matrix& secondMat) const;
-         Matrix subtract(const Matrix& secondMat) const;
-         Matrix multiplyByScalar(double scalar) const;
-         Matrix multiply(const Matrix& secondMat) const;
+         Matrix operator+(const Matrix& secondMat) const;
+         Matrix operator-(const Matrix& secondMat) const;
+         Matrix operator*(double scalar) const;
+         Matrix operator*(const Matrix& secondMat) const;
          Matrix transpose() const;
 
  };

@@ -14,6 +14,7 @@
  #include "matrix.h"
  using namespace std;
  
+ 
  // Constructor
  Matrix::Matrix(int rows, int cols, double initVal) : rows(rows), cols(cols) {
      allocateMemory();
@@ -83,7 +84,11 @@
  
 
  // Public Methods ==================================================================
- // Public methods to set and get elements of the matrix
+// Get the number of rows and columns in the matrix
+ int Matrix::getRows() const { return rows; }
+ int Matrix::getCols() const { return cols; }
+
+
  // Set the value of a specific element in the matrix
  void Matrix::setElement(int row, int col, double value) {
      data[row][col] = value;
@@ -125,62 +130,105 @@
  
 
 // Matrix operations ============================================================
-// Method to add two matrices
- Matrix Matrix::add(const Matrix& secondMat) const {
-     if (rows != secondMat.rows || cols != secondMat.cols) {
-         cerr << "Addition error: matrix dimensions do not match.\n";
-         exit(EXIT_FAILURE);
-     }
+// Operator override to add two matrices
+ Matrix Matrix::operator+(const Matrix& secondMat) const {
+    
+    // Check if the dimensions of the matricies are the same
+    if (rows != secondMat.rows || cols != secondMat.cols) {
+         cout << "Addition error: matrix dimensions do not match.\n";
+         return Matrix(0, 0, 0); // Return an empty matrix
+     } //end if
  
+
+     // Create a new matrix to store and return the result
      Matrix result(rows, cols, 0);
      for (int i = 0; i < rows; ++i)
          for (int j = 0; j < cols; ++j)
+            // add the elements of the two matrices
              result.data[i][j] = data[i][j] + secondMat.data[i][j];
+            // end inner for loop
+        // end outer for loop
+
      return result;
- }
+ } // end operator+
  
- Matrix Matrix::subtract(const Matrix& secondMat) const {
+
+// Operator override to subtract two matrices
+ Matrix Matrix::operator-(const Matrix& secondMat) const {
      if (rows != secondMat.rows || cols != secondMat.cols) {
-         cerr << "Subtraction error: matrix dimensions do not match.\n";
-         exit(EXIT_FAILURE);
-     }
+        cout << "Subtraction error: matrix dimensions do not match.\n";
+        return Matrix(0, 0, 0); // Return an empty matrix
+     } //end if
  
+
+    // Create a new matrix to store and return the result
      Matrix result(rows, cols, 0);
      for (int i = 0; i < rows; ++i)
          for (int j = 0; j < cols; ++j)
+            // subtract the elements of the two matrices
              result.data[i][j] = data[i][j] - secondMat.data[i][j];
+            // end inner for loop
+        // end outer for loop
+
      return result;
- }
+ } //end operator-
  
- Matrix Matrix::multiplyByScalar(double scalar) const {
+
+ // Operator override to multiply a matrix by a scalar
+ Matrix Matrix::operator*(double scalar) const {
+    
+    // Create a new matrix to store and return the result    
      Matrix result(rows, cols, 0);
      for (int i = 0; i < rows; ++i)
          for (int j = 0; j < cols; ++j)
+            // multiply each element by the scalar
              result.data[i][j] = data[i][j] * scalar;
+            // end inner for loop
+        // end outer for loop
+
      return result;
- }
+ } // end operator*(scalar)
  
- Matrix Matrix::multiply(const Matrix& secondMat) const {
+
+ // Operator override to multiply two matrices
+ Matrix Matrix::operator*(const Matrix& secondMat) const {
+     
+    // Check if the matrices can be multiplied
      if (cols != secondMat.rows) {
-         cerr << "Multiplication error: incompatible matrix dimensions.\n";
-         exit(EXIT_FAILURE);
-     }
+         cout << "Multiplication error: incompatible matrix dimensions.\n";
+         return Matrix(0, 0, 0); // Return an empty matrix
+     } //end if
+
  
+     // Create a new matrix to store and return the result
      Matrix result(rows, secondMat.cols, 0);
      for (int i = 0; i < rows; ++i)
          for (int j = 0; j < secondMat.cols; ++j)
              for (int k = 0; k < cols; ++k)
+                // multiply and add the elements of the two matrices
                  result.data[i][j] += data[i][k] * secondMat.data[k][j];
+                // end k for loop
+            // end j for loop
+        // end i for loop
+
      return result;
- }
+ } // end operator*(matrix)
  
+
+ // Method to return the transpose of the matrix
  Matrix Matrix::transpose() const {
+
+    // Create a new matrix to store and return the result
      Matrix result(cols, rows, 0);
      for (int i = 0; i < rows; ++i)
          for (int j = 0; j < cols; ++j)
+            // swap the rows and columns
              result.data[j][i] = data[i][j];
+            // end inner for loop
+        // end outer for loop
+
      return result;
- }
+ } // end transpose
+
+ // end matrix.cpp
  
- int Matrix::getRows() const { return rows; }
- int Matrix::getCols() const { return cols; }
