@@ -3,7 +3,7 @@
  * @brief Main file to test the Matrix class
  */
 
- #include "matrix.h"
+ #include "matrixCpp.h"
  #include <iostream>
 
  int main() {
@@ -39,6 +39,6 @@
     result.printMatrix();
     std::cout << "\n\n";
 
-    
+
     return 0;
 }

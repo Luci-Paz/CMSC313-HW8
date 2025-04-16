@@ -11,8 +11,8 @@
 
 
 
- #ifndef MATRIX_H
- #define MATRIX_H
+ #ifndef MATRIXCPP_H
+ #define MATRIXCPP_H
  
  class Matrix {
      private:
@@ -55,4 +55,4 @@
 
  };
  
- #endif // MATRIX_H
+ #endif // MATRIXCPP_H

@@ -11,10 +11,10 @@ DEBUG_FLAGS = -std=c++11 -Wall -Wextra -g
 CXXFLAGS = $(RELEASE_FLAGS)
 
 # executable names
-CXX_EXE = matrixProgramCPP
+CXX_EXE = matrixTestCpp
 
 # Source and object files
-SRCS = matrixMain.cpp matrix.cpp
+SRCS = matrixTest.cpp matrix.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 # Default: Release build

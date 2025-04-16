@@ -11,7 +11,7 @@
 
  #include <iostream>
  #include <iomanip>
- #include "matrix.h"
+ #include "matrixCpp.h"
  using namespace std;
  
 
