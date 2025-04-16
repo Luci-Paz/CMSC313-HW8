@@ -126,12 +126,15 @@ Matrix::Matrix() : rows(0), cols(0), data(nullptr) {
 
     // loop through each element and display it
      for (int i = 0; i < rows; ++i) {
-         for (int j = 0; j < cols; ++j)
-             cout << setw(10) << data[i][j] << " "; 
+        
+        cout << "|";
+        for (int j = 0; j < cols; ++j)
+             cout << setw(5) << data[i][j] << " "; 
             // end inner for loop
          
-         cout << "\n";
+         cout << "|" << "\n";
      } //end outer for loop
+    cout << endl;
  } //end printMatrix
  
 
