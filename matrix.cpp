@@ -14,7 +14,13 @@
  #include "matrix.h"
  using namespace std;
  
- 
+
+ // Default Constructor
+Matrix::Matrix() : rows(0), cols(0), data(nullptr) {
+     // No initialization needed
+ } // end default constructor
+
+
  // Constructor
  Matrix::Matrix(int rows, int cols, double initVal) : rows(rows), cols(cols) {
      allocateMemory();
@@ -188,6 +194,22 @@
 
      return result;
  } // end operator*(scalar)
+
+
+// Friend function to multiply a scalar by a matrix
+Matrix operator*(double scalar, const Matrix& secondMat) {
+    
+     // Create a new matrix to store and return the result
+     Matrix result(secondMat.rows, secondMat.cols, 0);
+     for (int i = 0; i < secondMat.rows; ++i)
+         for (int j = 0; j < secondMat.cols; ++j)
+            // multiply each element by the scalar
+             result.data[i][j] = scalar * secondMat.data[i][j];
+            // end inner for loop
+        // end outer for loop
+
+     return result;
+ } // end operator*(scalar, matrix)
  
 
  // Operator override to multiply two matrices

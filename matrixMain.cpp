@@ -7,50 +7,38 @@
  #include <iostream>
 
  int main() {
-    int r, c;
+    
+    //Test case for HW8, A + (3 * B) * C^T
+    
+    // Create matrices A, B, and C with given dimensions
+    Matrix A(2, 2, 0);
+    Matrix B(2, 3, 0);
+    Matrix C(2, 3, 0); 
 
-    std::cout << "Matrix A - Enter rows and columns: ";
-    std::cin >> r >> c;
-    Matrix A(r, c);
-    A.inputMatrix();
-
-    std::cout << "Matrix B - Enter rows and columns: ";
-    std::cin >> r >> c;
-    Matrix B(r, c);
-    B.inputMatrix();
-
-    std::cout << "\nMatrix A:\n";
+    // Initialize matrices A, B, and C with some values
+    A.setElement(0, 0, 6); A.setElement(0, 1, 4);
+    A.setElement(1, 0, 8); A.setElement(1, 1, 3);
     A.printMatrix();
 
-    std::cout << "\nMatrix B:\n";
+    B.setElement(0, 0, 1); B.setElement(0, 1, 2); B.setElement(0, 2, 3);
+    B.setElement(1, 0, 4); B.setElement(1, 1, 5); B.setElement(1, 2, 6);
     B.printMatrix();
 
-    Matrix sum = A.add(B);
-    std::cout << "\nA + B:\n";
-    sum.printMatrix();
+    C.setElement(0, 0, 2); C.setElement(0, 1, 4); C.setElement(0, 2, 6);
+    C.setElement(1, 0, 1); C.setElement(1, 1, 3); C.setElement(1, 2, 5);
+    C.printMatrix();
 
-    Matrix diff = A.subtract(B);
-    std::cout << "\nA - B:\n";
-    diff.printMatrix();
 
-    double scalar;
-    std::cout << "\nEnter scalar to multiply Matrix A: ";
-    std::cin >> scalar;
-    Matrix scalarMult = A.multiplyByScalar(scalar);
-    std::cout << "\nA * " << scalar << ":\n";
-    scalarMult.printMatrix();
+    //Display the transpose of C
+    C.transpose().printMatrix();
 
-    if (A.getCols() == B.getRows()) {
-        Matrix prod = A.multiply(B);
-        std::cout << "\nA * B:\n";
-        prod.printMatrix();
-    } else {
-        std::cout << "\nA * B not possible (dimension mismatch)\n";
-    }
 
-    Matrix transA = A.transpose();
-    std::cout << "\nTranspose of A:\n";
-    transA.printMatrix();
+    // Run the test case
+    std::cout << "testing matrix class with given test case\n";
+    Matrix result = A + (3 * B) * C.transpose();
+    result.printMatrix();
+    std::cout << "\n\n";
 
+    
     return 0;
 }

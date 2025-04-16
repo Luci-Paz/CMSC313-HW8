@@ -24,6 +24,7 @@
          void deallocateMemory();
  
      public:
+         Matrix();                                      // Default Constructor
          Matrix(int rows, int cols, double initVal);    // Constructor
          Matrix(const Matrix& secondMat);               // Copy Constructor
          ~Matrix();                                     // Destructor
@@ -49,6 +50,7 @@
          Matrix operator-(const Matrix& secondMat) const;
          Matrix operator*(double scalar) const;
          Matrix operator*(const Matrix& secondMat) const;
+         friend Matrix operator*(double scalar, const Matrix& secondMat);
          Matrix transpose() const;
 
  };
