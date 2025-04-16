@@ -14,7 +14,7 @@ CXXFLAGS = $(RELEASE_FLAGS)
 CXX_EXE = matrixTestCpp
 
 # Source and object files
-SRCS = matrixTest.cpp matrix.cpp
+SRCS = testCaseCpp.cpp matrix.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 # Default: Release build
