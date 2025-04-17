@@ -15,6 +15,8 @@
 
  int main() {
     
+
+    std::cout << "Size = " << sizeof(size_t) << std::endl;
     //Test case for HW8, A + (3 * B) * C^T
     
     // Create matrices A, B, and C with given dimensions

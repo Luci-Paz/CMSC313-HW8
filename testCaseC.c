@@ -2,6 +2,7 @@
 #include "matrixC.h"
 
 int main() {
+    
     // Test case: A + (3 * B) * C^T
     Matrix A = createMatrix(2, 2, 0);
     Matrix B = createMatrix(2, 3, 0);

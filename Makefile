@@ -6,38 +6,66 @@ CXX = g++
 
 
 # Release flags
-RELEASE_FLAGS_CXX = -std=c++11 -Wall -Wextra -O2
-RELEASE_FLAGS_CC = -std=c99 -Wall -Wextra -O2
+# for 32-bit compilation ==============================================================
+RELEASE_FLAGS_m32_CXX = -std=c++11 -m32 -Wall -Wextra -O2
+RELEASE_FLAGS_m32_CC = -std=c99 -m32 -Wall -Wextra -O2
 
-# Debug flags
-DEBUG_FLAGS_CXX = -std=c++11 -Wall -Wextra -g
-DEBUG_FLAGS_CC = -std=c99 -Wall -Wextra -g
+# for 64-bit compilation
+RELEASE_FLAGS_m64_CXX = -std=c++11 -m64 -Wall -Wextra -O2
+RELEASE_FLAGS_m64_CC = -std=c99 -m64 -Wall -Wextra -O2
 
 
-# Default build type
-CXXFLAGS = $(RELEASE_FLAGS_CXX)
-CCFLAGS = $(RELEASE_FLAGS_CC)
+# Debug flags =========================================================================
+# for 32-bit compilation
+DEBUG_FLAGS_m32_CXX = -std=c++11 -m32 -Wall -Wextra -g
+DEBUG_FLAGS_m32_CC = -std=c99 -m32 -Wall -Wextra -g
 
-# executable names
+# for 64-bit compilation
+DEBUG_FLAGS_m64_CXX = -std=c++11 -m64 -Wall -Wextra -g
+DEBUG_FLAGS_m64_CC = -std=c99 -m64 -Wall -Wextra -g
+
+
+# Default build type ==================================================================
+CXXFLAGS = $(RELEASE_FLAGS_m64_CXX)
+CCFLAGS = $(RELEASE_FLAGS_m64_CC)
+
+
+# executable names ====================================================================
 CPP_EXE = matrixTestCpp
 CC_EXE = matrixTestC
 
-# Source and object files
+
+# Source and object files =============================================================
 CPP_SRCS = testCaseCpp.cpp matrixCpp.cpp
 CPP_OBJS = $(CPP_SRCS:.cpp=.o)
 
 CC_SRCS = testCaseC.c matrixC.c
 CC_OBJS = $(CC_SRCS:.c=.o)
 
-# Default: Release build
-all: CXXFLAGS := $(RELEASE_FLAGS_CXX)	
-all: CCFLAGS := $(RELEASE_FLAGS_CC)
+
+# Release Builds ======================================================================
+# Default release build (uses 64-bit flags by default) ================================
+all: CXXFLAGS := $(RELEASE_FLAGS_m64_CXX)	
+all: CCFLAGS := $(RELEASE_FLAGS_m64_CC)
 all: $(CPP_EXE) $(CC_EXE)
 
-# Debug build
-debug: CXXFLAGS := $(DEBUG_FLAGS_CXX)
-debug: CCFLAGS := $(DEBUG_FLAGS_CC)
+# Release build for -m32
+Release32bit: CXXFLAGS := $(RELEASE_FLAGS_m32_CXX)
+Release32bit: CCFLAGS := $(RELEASE_FLAGS_m32_CC)
+Release32bit: $(CPP_EXE) $(CC_EXE)
+
+
+# Debug Builds ========================================================================
+# Default debug build (uses 64-bit flags by default) =================================
+debug: CXXFLAGS := $(DEBUG_FLAGS_m64_CXX)
+debug: CCFLAGS := $(DEBUG_FLAGS_m64_CC)
 debug: $(CPP_EXE) $(CC_EXE)
+
+# Debug build for -m32
+debug32bit: CXXFLAGS := $(DEBUG_FLAGS_m32_CXX)
+debug32bit: CCFLAGS := $(DEBUG_FLAGS_m32_CC)
+debug32bit: $(CPP_EXE) $(CC_EXE)
+
 
 # Link object files to create executable
 $(CPP_EXE): $(CPP_OBJS)
