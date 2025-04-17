@@ -1,5 +1,5 @@
 /**
- * @file matrix.h
+ * @file matrixC.h
  * @brief Header file for the Matrix class
  * @details This file contains the declaration of the Matrix class, which provides
  *          basic matrix operations such as addition, subtraction, multiplication,
@@ -8,7 +8,6 @@
  * @author Lucian Pazour
  * @date (yy-dd-mm) 2025-16-04
  */
-
 
 
  #ifndef MATRIXCPP_H

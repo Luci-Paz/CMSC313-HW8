@@ -1,7 +1,14 @@
 /**
- * @file matrixMain.cpp
- * @brief Main file to test the Matrix class
+ * @file testCaseCpp.cpp
+ * @brief Main file to test the Matrix class 
+ * @details This file contains the main function that tests the Matrix class
+ *          by running a specific test case. The test case involves creating
+ *          matrices A, B, and C, initializing them with values, and performing
+ *          matrix operations such as addition, multiplication, and transposition.
+ * @author Lucian Pazour
+ * @date (yy-dd-mm) 2025-16-04
  */
+
 
  #include "matrixCpp.h"
  #include <iostream>
@@ -34,11 +41,13 @@
 
 
     // Run the test case
-    std::cout << "testing matrix class with given test case\n";
+    std::cout << "testing matrix class with given test case [A + (3 * B) * C^T]\n";
     Matrix result = A + (3 * B) * C.transpose();
     result.printMatrix();
     std::cout << "\n\n";
 
 
     return 0;
-}
+
+} // end main
+// end testCaseCpp

@@ -1,5 +1,5 @@
 /**
- * @file matrix.cpp
+ * @file matrixC.h 
  * @brief Implementation of the Matrix class
  * @details This file contains the implementation of the Matrix class, which provides
  *          basic matrix operations such as addition, subtraction, multiplication,
@@ -9,10 +9,11 @@
  * @date (yy-dd-mm) 2025-16-04
  */
 
+
  #include <iostream>
  #include <iomanip>
  #include "matrixCpp.h"
- using namespace std;
+ //using namespace std;
  
 
  // Default Constructor
@@ -109,13 +110,13 @@ Matrix::Matrix() : rows(0), cols(0), data(nullptr) {
  
  // Method to input matrix elements from user
  void Matrix::inputMatrix() {
-     cout << "Enter elements (" << rows << "x" << cols << "):\n";
+     std::cout << "Enter elements (" << rows << "x" << cols << "):\n";
      
      // Loop through each element and prompt user for input
      for (int i = 0; i < rows; ++i)
          for (int j = 0; j < cols; ++j) {
-             cout << "Element [" << i << "][" << j << "]: ";
-             cin >> data[i][j];
+             std::cout << "Element [" << i << "][" << j << "]: ";
+             std::cin >> data[i][j];
          } //end inner for loop
     // end outer for loop
  } // end inputMatrix
@@ -127,14 +128,14 @@ Matrix::Matrix() : rows(0), cols(0), data(nullptr) {
     // loop through each element and display it
      for (int i = 0; i < rows; ++i) {
         
-        cout << "|";
+        std::cout << "|";
         for (int j = 0; j < cols; ++j)
-             cout << setw(5) << data[i][j] << " "; 
+             std::cout << std::setw(5) << data[i][j] << " "; 
             // end inner for loop
          
-         cout << "|" << "\n";
+         std::cout << "|" << "\n";
      } //end outer for loop
-    cout << endl;
+    std::cout << std::endl;
  } //end printMatrix
  
 
@@ -144,7 +145,7 @@ Matrix::Matrix() : rows(0), cols(0), data(nullptr) {
     
     // Check if the dimensions of the matricies are the same
     if (rows != secondMat.rows || cols != secondMat.cols) {
-         cout << "Addition error: matrix dimensions do not match.\n";
+         std::cout << "Addition error: matrix dimensions do not match.\n";
          return Matrix(0, 0, 0); // Return an empty matrix
      } //end if
  
@@ -165,7 +166,7 @@ Matrix::Matrix() : rows(0), cols(0), data(nullptr) {
 // Operator override to subtract two matrices
  Matrix Matrix::operator-(const Matrix& secondMat) const {
      if (rows != secondMat.rows || cols != secondMat.cols) {
-        cout << "Subtraction error: matrix dimensions do not match.\n";
+        std::cout << "Subtraction error: matrix dimensions do not match.\n";
         return Matrix(0, 0, 0); // Return an empty matrix
      } //end if
  
@@ -220,7 +221,7 @@ Matrix operator*(double scalar, const Matrix& secondMat) {
      
     // Check if the matrices can be multiplied
      if (cols != secondMat.rows) {
-         cout << "Multiplication error: incompatible matrix dimensions.\n";
+         std::cout << "Multiplication error: incompatible matrix dimensions.\n";
          return Matrix(0, 0, 0); // Return an empty matrix
      } //end if
 
