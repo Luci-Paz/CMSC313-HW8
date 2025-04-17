@@ -23,10 +23,10 @@ CPP_EXE = matrixTestCpp
 CC_EXE = matrixTestC
 
 # Source and object files
-CPP_SRCS = testCaseCpp.cpp matrix.cpp
+CPP_SRCS = testCaseCpp.cpp matrixCpp.cpp
 CPP_OBJS = $(CPP_SRCS:.cpp=.o)
 
-CC_SRCS = testCaseC.c matrix.c
+CC_SRCS = testCaseC.c matrixC.c
 CC_OBJS = $(CC_SRCS:.c=.o)
 
 # Default: Release build
