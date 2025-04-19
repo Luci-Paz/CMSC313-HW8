@@ -21,6 +21,7 @@
  
          void allocateMemory();
          void deallocateMemory();
+         bool dimensionTest(const Matrix& secondMat, const int choice) const;
  
      public:
          Matrix();                                      // Default Constructor

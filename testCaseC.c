@@ -24,27 +24,34 @@ int main() {
     // Initialize matrices A, B, and C
     setElement(&A, 0, 0, 6); setElement(&A, 0, 1, 4);
     setElement(&A, 1, 0, 8); setElement(&A, 1, 1, 3);
+    printf("Matrix A:\n");
     printMatrix(&A);
 
     setElement(&B, 0, 0, 1); setElement(&B, 0, 1, 2); setElement(&B, 0, 2, 3);
     setElement(&B, 1, 0, 4); setElement(&B, 1, 1, 5); setElement(&B, 1, 2, 6);
+    printf("Matrix B:\n");
     printMatrix(&B);
 
     setElement(&C, 0, 0, 2); setElement(&C, 0, 1, 4); setElement(&C, 0, 2, 6);
     setElement(&C, 1, 0, 1); setElement(&C, 1, 1, 3); setElement(&C, 1, 2, 5);
+    printf("Matrix C:\n");
     printMatrix(&C);
 
     // Create a transpose of C
-    Matrix C_T = transposeMatrix(&C);
-    printMatrix(&C_T);
+    Matrix CT = transposeMatrix(&C);
+    printf("Matrix C^T:\n");
+    printMatrix(&CT);
+
 
     // Test case: A + (3 * B) * C^T
     printf("testing matrix struct with given test case\n");
     Matrix scalarMult = multiplyScalar(3, &B);
-    Matrix prod = multiplyMatrix(&scalarMult, &C_T);
+    Matrix prod = multiplyMatrix(&scalarMult, &CT);
     Matrix result = addMatrix(&A, &prod);
     printMatrix(&result);
 
+
+    // Additional test cases
     printf("Testing additional self made test cases\n");
     // Test case: C - B
     printf("Testing C - B\n");
@@ -66,9 +73,9 @@ int main() {
     Matrix multiplicationTestSquare = multiplyMatrix(&A, &A);
     printMatrix(&multiplicationTestSquare);
 
-    // Test case: B * C_T
-    printf("Testing B * C_T\n");
-    Matrix multiplicationTest = multiplyMatrix(&B, &C_T);
+    // Test case: B * CT
+    printf("Testing B * CT\n");
+    Matrix multiplicationTest = multiplyMatrix(&B, &CT);
     printMatrix(&multiplicationTest);
 
     // Test case: A * B
@@ -77,10 +84,10 @@ int main() {
     printMatrix(&multiplicationTestAB);
 
 
-
     // Test cases for dimension mismatch
-    // Test case: A + B
     printf("Testing dimension mismatches\n");
+    
+    // Test case: A + B
     printf("Testing A + B (dimension mismatch)\n");
     Matrix additionTestMismatch = addMatrix(&A, &B);
     printMatrix(&additionTestMismatch);
@@ -99,11 +106,11 @@ int main() {
 
     // Clean up
     // Free allocated memory for matrices
-    // Free matrices A, B, C, C_T, scalarMult, prod, and result
+    // Free matrices A, B, C, CT, scalarMult, prod, and result
     freeMatrix(&A);
     freeMatrix(&B);
     freeMatrix(&C);
-    freeMatrix(&C_T);
+    freeMatrix(&CT);
     freeMatrix(&scalarMult);
     freeMatrix(&prod);
     freeMatrix(&result);

@@ -87,6 +87,26 @@ Matrix::Matrix() : rows(0), cols(0), data(nullptr) {
          delete[] data[i];
      delete[] data;
  } //end deallocateMemory
+
+
+ // Private helper function to check matrix dimensions
+ bool Matrix::dimensionTest(const Matrix& secondMat, const int choice) const {
+    
+    // Check if add, sub or multiply and if dimensions match
+    // Add/Subtract if choice == 1
+     if ((choice == 1) && (rows != secondMat.rows || cols != secondMat.cols)) {
+         std::cout << "Arithmetic error: matrix dimensions do not match.\n";
+         return false; // Return false if error
+     } //end if
+    // Multiply if choice == 2
+     else if ((choice == 2) && (cols != secondMat.rows)) {
+         std::cout << "Multiplication error: incompatible matrix dimensions.\n";
+         return false; // Return false if error
+     } // end if-elseif
+    
+     return true; // Return true if no error
+
+ } // end dimensionTest
  
 
  // Public Methods ==================================================================
@@ -143,9 +163,8 @@ Matrix::Matrix() : rows(0), cols(0), data(nullptr) {
  Matrix Matrix::operator+(const Matrix& secondMat) const {
     
     // Check if the dimensions of the matricies are the same
-    if (rows != secondMat.rows || cols != secondMat.cols) {
-         std::cout << "Addition error: matrix dimensions do not match.\n";
-         return Matrix(0, 0, 0); // Return an empty matrix
+    if (dimensionTest(secondMat, 1) == false) {
+        return Matrix(0, 0, 0); // Return an empty matrix if error
      } //end if
  
 
@@ -164,11 +183,12 @@ Matrix::Matrix() : rows(0), cols(0), data(nullptr) {
 
 // Operator override to subtract two matrices
  Matrix Matrix::operator-(const Matrix& secondMat) const {
-     if (rows != secondMat.rows || cols != secondMat.cols) {
-        std::cout << "Subtraction error: matrix dimensions do not match.\n";
-        return Matrix(0, 0, 0); // Return an empty matrix
+    
+    // Check if the dimensions of the matricies are the same
+    if (dimensionTest(secondMat, 1) == false) {
+        return Matrix(0, 0, 0); // Return an empty matrix if error
      } //end if
- 
+
 
     // Create a new matrix to store and return the result
      Matrix result(rows, cols, 0);
@@ -219,12 +239,11 @@ Matrix operator*(double scalar, const Matrix& secondMat) {
  Matrix Matrix::operator*(const Matrix& secondMat) const {
      
     // Check if the matrices can be multiplied
-     if (cols != secondMat.rows) {
-         std::cout << "Multiplication error: incompatible matrix dimensions.\n";
-         return Matrix(0, 0, 0); // Return an empty matrix
+     if (dimensionTest(secondMat, 2) == false) {
+        return Matrix(0, 0, 0); // Return an empty matrix if error
      } //end if
-
  
+
      // Create a new matrix to store and return the result
      Matrix result(rows, secondMat.cols, 0);
      for (int i = 0; i < rows; ++i)

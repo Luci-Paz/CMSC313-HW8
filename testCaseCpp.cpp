@@ -27,27 +27,84 @@
     // Initialize matrices A, B, and C with some values
     A.setElement(0, 0, 6); A.setElement(0, 1, 4);
     A.setElement(1, 0, 8); A.setElement(1, 1, 3);
+    std::cout << "Matrix A:" << std::endl;
     A.printMatrix();
 
     B.setElement(0, 0, 1); B.setElement(0, 1, 2); B.setElement(0, 2, 3);
     B.setElement(1, 0, 4); B.setElement(1, 1, 5); B.setElement(1, 2, 6);
+    std::cout << "Matrix B:" << std::endl;
     B.printMatrix();
 
     C.setElement(0, 0, 2); C.setElement(0, 1, 4); C.setElement(0, 2, 6);
     C.setElement(1, 0, 1); C.setElement(1, 1, 3); C.setElement(1, 2, 5);
+    std::cout << "Matrix C:" << std::endl;
     C.printMatrix();
 
 
     //Display the transpose of C
-    C.transpose().printMatrix();
+    Matrix CT = C.transpose();
+    std::cout << "Matrix C^T:" << std::endl;
+    CT.printMatrix();
 
 
-    // Run the test case
+    // Run the test case A + (3 * B) * C^T
     std::cout << "testing matrix class with given test case [A + (3 * B) * C^T]\n";
     Matrix result = A + (3 * B) * C.transpose();
     result.printMatrix();
-    std::cout << "\n\n";
+    std::cout << std::endl;
 
+
+    // Additional Test Cases
+    std::cout << "Testing additional self made test cases\n";
+    // Test case: C - B
+    std::cout << "Testing C - B\n";
+    Matrix subtractionTest = C - B;
+    subtractionTest.printMatrix();
+
+    // Test case: A + A
+    std::cout << "Testing A + A\n";
+    Matrix additionTest = A + A;
+    additionTest.printMatrix();
+
+    // Test case: 3 * A
+    std::cout << "Testing 3 * A\n";
+    Matrix scalarMultA = 3 * A;
+    scalarMultA.printMatrix();
+
+    // Test case: A * A
+    std::cout << "Testing A * A\n";
+    Matrix multiplicationTestSquare = A * A;
+    multiplicationTestSquare.printMatrix();
+
+    // Test case: B * C^T
+    std::cout << "Testing B * C^T\n";
+    Matrix multiplicationTestRect = B * CT;
+    multiplicationTestRect.printMatrix();
+
+    // Test case: A * B
+    std::cout << "Testing A * B\n";
+    Matrix multiplicationTestAB = A * B;
+    multiplicationTestAB.printMatrix();
+
+
+    // Test cases for dimension mismatch
+    std::cout << "Testing dimension mismatch cases\n";
+
+    // Test case: A + B
+    std::cout << "Testing A + B (dimension mismatch)\n";
+    Matrix additionTestMismatch = A + B;
+    additionTestMismatch.printMatrix();
+
+    // Test case: A - B
+    std::cout << "Testing A - B (dimension mismatch)\n";
+    Matrix subtractionTestMismatch = A - B;
+    subtractionTestMismatch.printMatrix();
+
+    // Test case: B * A
+    std::cout << "Testing B * A (dimension mismatch)\n";
+    Matrix multiplicationTestBA = B * A;
+    multiplicationTestBA.printMatrix();
+    
 
     return 0;
 
