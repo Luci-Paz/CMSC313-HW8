@@ -92,5 +92,24 @@ After building, run each test executable:
 
 **Running the C++ executable results in the following screen:**  
 
+<br>
+
+![Image of test case output for the C++ program. It shows the values in the initial matrices, the output of the test case outlined in the HW assignment and additional test cases for
+arithmetic operations](/images/ImageOfCppCodeTests.png)
+
+<br>
+
+**Running the C executable results in the following screen:**
+
+<br>
+
+![Image of test case output for the C program. It shows the values in the initial matrices, the output of the test case outlined in the HW assignment and additional test cases for
+arithmetic operations](/images/ImageOfCCodeTests.png)
+
+---
+
 
 # Additional Information
+1. Memory is manually managed in the C program, make sure any new matrices made are properly freed.
+2. Operator overloading in the C++ program makes it easier to write arithmetic expressions.
+3. Standard matrix dimension rules apply. For addition and subtraction, the matrices must have the same dimensions. For multiplication, the number of columns of the first matrix must match the rows of the second matrix. If these rules are broken they should be caught, returning an empty matrix and outputting a message saying the dimensions of the matrices are incorrect for that operation. 
