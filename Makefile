@@ -31,8 +31,12 @@ CCFLAGS = $(RELEASE_FLAGS_m64_CC)
 
 
 # executable names ====================================================================
-CPP_EXE = matrixTestCpp
-CC_EXE = matrixTestC
+CPP64_EXE = matrixTestCpp64
+CC64_EXE = matrixTestC64
+
+CPP32_EXE = matrixTestCpp32
+CC32_EXE = matrixTestC32
+
 
 
 # Source and object files =============================================================
@@ -47,32 +51,39 @@ CC_OBJS = $(CC_SRCS:.c=.o)
 # Default release build (uses 64-bit flags by default) ================================
 all: CXXFLAGS := $(RELEASE_FLAGS_m64_CXX)	
 all: CCFLAGS := $(RELEASE_FLAGS_m64_CC)
-all: $(CPP_EXE) $(CC_EXE)
+all: $(CPP64_EXE) $(CC64_EXE)
 
 # Release build for -m32
 Release32bit: CXXFLAGS := $(RELEASE_FLAGS_m32_CXX)
 Release32bit: CCFLAGS := $(RELEASE_FLAGS_m32_CC)
-Release32bit: $(CPP_EXE) $(CC_EXE)
+Release32bit: $(CPP32_EXE) $(CC32_EXE)
 
 
 # Debug Builds ========================================================================
 # Default debug build (uses 64-bit flags by default) =================================
 debug: CXXFLAGS := $(DEBUG_FLAGS_m64_CXX)
 debug: CCFLAGS := $(DEBUG_FLAGS_m64_CC)
-debug: $(CPP_EXE) $(CC_EXE)
+debug: $(CPP64_EXE) $(CC64_EXE)
 
 # Debug build for -m32
 debug32bit: CXXFLAGS := $(DEBUG_FLAGS_m32_CXX)
 debug32bit: CCFLAGS := $(DEBUG_FLAGS_m32_CC)
-debug32bit: $(CPP_EXE) $(CC_EXE)
+debug32bit: $(CPP32_EXE) $(CC32_EXE)
 
 
 # Link object files to create executable
-$(CPP_EXE): $(CPP_OBJS)
+$(CPP64_EXE): $(CPP_OBJS)
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-$(CC_EXE): $(CC_OBJS)
+$(CC64_EXE): $(CC_OBJS)
 	$(CC) $(CCFLAGS) -o $@ $^
+
+$(CPP32_EXE): $(CPP_OBJS)
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+$(CC32_EXE): $(CC_OBJS)
+	$(CC) $(CCFLAGS) -o $@ $^
+
 
 # Compile source files to object files
 %.o: %.cpp
@@ -83,6 +94,6 @@ $(CC_EXE): $(CC_OBJS)
 
 # Clean up build files
 clean:
-	rm -f $(CPP_EXE) $(CPP_OBJS) $(CC_EXE) $(CC_OBJS)
+	rm -f $(CPP32_EXE) $(CPP_OBJS) $(CC32_EXE) $(CC_OBJS) $(CPP64_EXE) $(CC64_EXE)
 
 .PHONY: all clean
