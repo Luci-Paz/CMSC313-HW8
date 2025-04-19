@@ -102,7 +102,7 @@ int main() {
     Matrix multiplicationTestMismatch = multiplyMatrix(&B, &A);
     printMatrix(&multiplicationTestMismatch);
     
-    
+    printf("End of test cases\n");
 
     // Clean up
     // Free allocated memory for matrices
