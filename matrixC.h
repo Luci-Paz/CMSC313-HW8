@@ -40,4 +40,5 @@ Matrix multiplyScalar(double scalar, const Matrix* m);
 Matrix multiplyMatrix(const Matrix* a, const Matrix* b);
 Matrix transposeMatrix(const Matrix* m);
 
+
 #endif // MATRIXC_H

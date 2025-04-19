@@ -17,12 +17,12 @@ RELEASE_FLAGS_m64_CC = -std=c99 -m64 -Wall -Wextra -O2
 
 # Debug flags =========================================================================
 # for 32-bit compilation
-DEBUG_FLAGS_m32_CXX = -std=c++11 -m32 -Wall -Wextra -g
-DEBUG_FLAGS_m32_CC = -std=c99 -m32 -Wall -Wextra -g
+DEBUG_FLAGS_m32_CXX = -std=c++11 -m32 -Wall -Wextra -g -O0
+DEBUG_FLAGS_m32_CC = -std=c99 -m32 -Wall -Wextra -g -O0
 
 # for 64-bit compilation
-DEBUG_FLAGS_m64_CXX = -std=c++11 -m64 -Wall -Wextra -g
-DEBUG_FLAGS_m64_CC = -std=c99 -m64 -Wall -Wextra -g
+DEBUG_FLAGS_m64_CXX = -std=c++11 -m64 -Wall -Wextra -g -O0
+DEBUG_FLAGS_m64_CC = -std=c99 -m64 -Wall -Wextra -g -O0
 
 
 # Default build type ==================================================================
