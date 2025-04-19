@@ -1,3 +1,16 @@
+/**
+ * @file testCaseC.c
+ * @brief Test cases for the Matrix struct
+ * @details This file contains test cases for the Matrix struct. It tests
+ *         various matrix operations such as addition, subtraction,
+ *         multiplication, and transposition. The test cases include
+ *         both valid and invalid operations to ensure the correctness
+ *         of the matrix operations.
+ * @author Lucian Pazour
+ * @date (yy-dd-mm) 2025-18-04
+ */
+
+
 #include <stdio.h>
 #include "matrixC.h"
 
@@ -60,13 +73,14 @@ int main() {
 
     // Test case: A * B
     printf("Testing A * B\n");
-    Matrix multiplicationTestMismatch = multiplyMatrix(&A, &B);
-    printMatrix(&multiplicationTestMismatch);
+    Matrix multiplicationTestAB = multiplyMatrix(&A, &B);
+    printMatrix(&multiplicationTestAB);
 
 
 
     // Test cases for dimension mismatch
     // Test case: A + B
+    printf("Testing dimension mismatches\n");
     printf("Testing A + B (dimension mismatch)\n");
     Matrix additionTestMismatch = addMatrix(&A, &B);
     printMatrix(&additionTestMismatch);
@@ -78,22 +92,34 @@ int main() {
 
     // Test case: B * A
     printf("Testing B * A (dimension mismatch)\n");
-    Matrix multiplicationTestBA = multiplyMatrix(&B, &A);
-    printMatrix(&multiplicationTestBA);
+    Matrix multiplicationTestMismatch = multiplyMatrix(&B, &A);
+    printMatrix(&multiplicationTestMismatch);
     
     
 
     // Clean up
+    // Free allocated memory for matrices
+    // Free matrices A, B, C, C_T, scalarMult, prod, and result
     freeMatrix(&A);
     freeMatrix(&B);
     freeMatrix(&C);
     freeMatrix(&C_T);
     freeMatrix(&scalarMult);
     freeMatrix(&prod);
+    freeMatrix(&result);
+
+    // Free additional test cases
     freeMatrix(&subtracitonTest);
     freeMatrix(&additionTest);
+    freeMatrix(&scalarMultA);
+    freeMatrix(&multiplicationTestSquare);
     freeMatrix(&multiplicationTest);
-    freeMatrix(&result);
+    freeMatrix(&multiplicationTestAB);
+
+    // Mismatch test cases
+    freeMatrix(&additionTestMismatch);
+    freeMatrix(&subtractionTestMismatch);
+    freeMatrix(&multiplicationTestMismatch);
 
     return 0;
 }
