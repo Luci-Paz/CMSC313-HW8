@@ -3,7 +3,7 @@
  * @brief Header file for the Matrix class
  * @details This file contains the declaration of the Matrix class, which provides
  *          basic matrix operations such as addition, subtraction, multiplication,
- *          division, and transposition. The class uses a 2D vector to store the matrix
+ *          division, and transposition. The class uses a 2D array to store the matrix
  *          data and provides methods to manipulate and access the matrix elements.
  * @author Lucian Pazour
  * @date (yy-dd-mm) 2025-16-04

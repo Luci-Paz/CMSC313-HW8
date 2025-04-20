@@ -1,4 +1,6 @@
 # Makefile for Matrix Programs	
+# Author: Lucian Pazour
+# Date: 2025-18-04
 
 # Compiler
 CC = gcc

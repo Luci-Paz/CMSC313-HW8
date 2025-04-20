@@ -1,5 +1,5 @@
 /**
- * @file matrixC.h
+ * @file matrixC.c
  * @brief Implementation file for the Matrix struct
  * @details This file contains the implementation of the Matrix struct, which provides
  *          basic matrix operations such as addition, subtraction, multiplication,

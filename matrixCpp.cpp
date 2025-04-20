@@ -1,9 +1,9 @@
 /**
- * @file matrixC.h 
+ * @file matrixC.cpp 
  * @brief Implementation of the Matrix class
  * @details This file contains the implementation of the Matrix class, which provides
  *          basic matrix operations such as addition, subtraction, multiplication,
- *          division, and transposition. The class uses a 2D vector to store the matrix
+ *          division, and transposition. The class uses a 2D array to store the matrix
  *          data and provides methods to manipulate and access the matrix elements.
  * @author Lucian Pazour
  * @date (yy-dd-mm) 2025-16-04
@@ -110,7 +110,7 @@ Matrix::Matrix() : rows(0), cols(0), data(nullptr) {
  
 
  // Public Methods ==================================================================
-// Get the number of rows and columns in the matrix
+ // Get the number of rows and columns in the matrix
  int Matrix::getRows() const { return rows; }
  int Matrix::getCols() const { return cols; }
 
@@ -158,8 +158,8 @@ Matrix::Matrix() : rows(0), cols(0), data(nullptr) {
  } //end printMatrix
  
 
-// Matrix operations ============================================================
-// Operator override to add two matrices
+ // Matrix operations ============================================================
+ // Operator override to add two matrices
  Matrix Matrix::operator+(const Matrix& secondMat) const {
     
     // Check if the dimensions of the matricies are the same
@@ -181,7 +181,7 @@ Matrix::Matrix() : rows(0), cols(0), data(nullptr) {
  } // end operator+
  
 
-// Operator override to subtract two matrices
+ // Operator override to subtract two matrices
  Matrix Matrix::operator-(const Matrix& secondMat) const {
     
     // Check if the dimensions of the matricies are the same
@@ -219,8 +219,8 @@ Matrix::Matrix() : rows(0), cols(0), data(nullptr) {
  } // end operator*(scalar)
 
 
-// Friend function to multiply a scalar by a matrix
-Matrix operator*(double scalar, const Matrix& secondMat) {
+ // Friend function to multiply a scalar by a matrix
+ Matrix operator*(double scalar, const Matrix& secondMat) {
     
      // Create a new matrix to store and return the result
      Matrix result(secondMat.rows, secondMat.cols, 0);
